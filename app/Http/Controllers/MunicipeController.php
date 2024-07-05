@@ -11,8 +11,7 @@ class MunicipeController extends Controller
     //Listar municipes
     public function index()
     {
-        $municipes = Municipe::all();
-        //dd($municipes);
+        $municipes = Municipe::orderBy('nome')->paginate(30);
         return view('municipes.index', [
             'municipes' => $municipes
         ]);
