@@ -16,4 +16,14 @@ class MunicipeController extends Controller
             'municipes' => $municipes
         ]);
     }
+
+    //Abrir formulario de cadastro de municipe
+    public function create(){
+        return view('municipes.create');
+    }
+
+    //Cadastrar municipe no banco de dados
+    public function store(){
+
+    }
 }

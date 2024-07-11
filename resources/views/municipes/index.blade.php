@@ -15,7 +15,7 @@
         <div class="card-header space-between-elements">
             <span>Listar</span>
             <span>
-                <a href="#" class="btn btn-success btn-sm">
+                <a href="{{ route('municipe.create') }}" class="btn btn-success btn-sm">
                     <i class="fa-solid fa-square-plus"></i> Cadastrar</a>
             </span>
         </div>

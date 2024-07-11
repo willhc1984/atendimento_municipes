@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/index-municipes', [MunicipeController::class, 'index'])->name('municipe.index');
+Route::get('/create-municipes', [MunicipeController::class, 'create'])->name('municipe.create');
+Route::post('/store-municipes', [MunicipeController::class, 'store'])->name('municipe.store');
