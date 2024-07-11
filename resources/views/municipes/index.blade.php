@@ -11,6 +11,8 @@
         </ol>
     </div>
 
+    <x-alert />
+
     <div class="card mb-4 border-light shadow">
         <div class="card-header space-between-elements">
             <span>Listar</span>
