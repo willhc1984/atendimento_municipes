@@ -11,11 +11,21 @@ use Illuminate\Support\Facades\DB;
 class MunicipeController extends Controller
 {
     //Listar municipes
-    public function index()
+    public function index(Request $request)
     {
-        $municipes = Municipe::orderBy('nome')->paginate(30);
+        //Recuperar registros no banco de dados conforme parametros do formulario de pesquisa
+        $municipes = Municipe::when($request->has('nome'), function($whenQuery) use ($request){
+            $whenQuery->where('nome', 'like', '%' . $request->nome . '%');
+        })
+
+        ->orderBy('nome')
+        ->paginate(20)
+        ->withQueryString();
+
+        // $municipes = Municipe::orderBy('nome')->paginate(30);
         return view('municipes.index', [
-            'municipes' => $municipes
+            'municipes' => $municipes,
+            'nome' => $request->nome
         ]);
     }
 
