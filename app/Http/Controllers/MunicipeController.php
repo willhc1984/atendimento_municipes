@@ -14,13 +14,13 @@ class MunicipeController extends Controller
     public function index(Request $request)
     {
         //Recuperar registros no banco de dados conforme parametros do formulario de pesquisa
-        $municipes = Municipe::when($request->has('nome'), function($whenQuery) use ($request){
+        $municipes = Municipe::when($request->has('nome'), function ($whenQuery) use ($request) {
             $whenQuery->where('nome', 'like', '%' . $request->nome . '%');
         })
 
-        ->orderBy('nome')
-        ->paginate(20)
-        ->withQueryString();
+            ->orderBy('nome')
+            ->paginate(20)
+            ->withQueryString();
 
         // $municipes = Municipe::orderBy('nome')->paginate(30);
         return view('municipes.index', [
@@ -30,7 +30,8 @@ class MunicipeController extends Controller
     }
 
     //Abrir formulario de cadastro de municipe
-    public function create(){
+    public function create()
+    {
         return view('municipes.create');
     }
 
@@ -39,11 +40,11 @@ class MunicipeController extends Controller
     {
         //Validação dos campos do formulario
         $request->validated();
-        
+
         //Ponto inicial da transação
         DB::beginTransaction();
 
-        try{
+        try {
             //Cadastrar municipe no banco de dados
             $municipe = Municipe::create([
                 'nome' => $request->nome,
@@ -56,13 +57,48 @@ class MunicipeController extends Controller
             DB::commit();
 
             return redirect()->route('municipe.index')->with('success', 'Munícipe cadastrado com sucesso!');
-
-        }catch(Exception $e){
-            dd($e);
+        } catch (Exception $e) {
             //Operação não concluida com exito
             DB::rollBack();
             //Redireciona com meg de erro
             return back()->withInput()->with('error', 'Munícpe não foi cadastrado! Tente novamente.');
+        }
+    }
+
+    //Abrir formulario para editar municipe
+    public function edit(Municipe $municipe)
+    {
+        return view('municipes.edit', ['municipe' => $municipe]);
+    }
+
+    //Atualizar municipe
+    public function update(MunicipeRequest $request, Municipe $municipe)
+    {
+        //Validar formulario
+        $request->validated();
+
+        //Ponto inicial da transação
+        DB::beginTransaction();
+
+        try {
+            //Edita as informações do municipe
+            $municipe->update([
+                'nome' => $request->nome,
+                'documento' => $request->documento,
+                'telefone' => $request->telefone,
+                'bairro' => $request->bairro,
+            ]);
+
+            DB::commit();
+
+            //Redireciona co mensagem de sucesso
+            return redirect()->route('municipe.index')->with('success', 'Munícipe editado com sucesso!');
+
+        } catch (Exception $e) {
+             //Operação não concluida com exito
+             DB::rollBack();
+             //Redireciona com msg de erro
+             return back()->withInput()->with('error', 'Munícpe não foi cadastrado! Tente novamente.');
         }
     }
 }

@@ -72,8 +72,8 @@
                                     <a href="#" class="btn btn-info btn-sm me-1 mb-1">
                                         <i class="fa-solid fa-list-check"></i> Atendimentos</a>
 
-                                    <a href="#" class="btn btn-secondary btn-sm me-1 mb-1">
-                                        <i class="fa-solid fa-magnifying-glass"></i>Visualizar</a>
+                                    <a href="{{ route('municipe.edit', ['municipe' => $municipe->id]) }}" class="btn btn-secondary btn-sm me-1 mb-1">
+                                        <i class="fa-solid fa-pen-to-square"></i>Editar</a>
 
                                 </td>
                             </tr>

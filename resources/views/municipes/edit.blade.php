@@ -7,44 +7,40 @@
             <ol class="breadcrumb mb-3 mt-3">
                 <li class="breadcrumb-item"><a href="/dashboard">Início</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('municipe.index') }}">Munícipes</a></li>
-                <li class="breadcrumb-item active">Cadastrar</li>
+                <li class="breadcrumb-item active">Editar</li>
             </ol>
         </div>
 
         <div class="card mb-4 border-light shadow">
             <div class="card-header space-between-elements">
-                <span>Cadastrar</span>
-                <span>
-                    <a href="{{ route('municipe.index') }}" class="btn btn-success btn-sm">
-                        <i class="fa-solid fa-square-plus"></i> Listar</a>
-                </span>
+                <span>Editar</span>
             </div>
 
             <div class="card-body">
 
                 <x-alert />
 
-                <form class="row g-3" action="{{ route('municipe.store') }}" method="POST">
+                <form class="row g-3" action="{{ route('municipe.update', ['municipe' => $municipe->id]) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <div class="col-12">
                         <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" name="nome" id="nome" value="{{ old('nome') }}"
+                        <input type="text" class="form-control" name="nome" id="nome" value="{{ old('nome', $municipe->nome) }}"
                             placeholder="Nome do munícipe">
                     </div>
                     <div class="col-12">
                         <label for="documento" class="form-label">Documento:</label>
                         <input type="text" class="form-control" name="documento" id="documento"
-                            value="{{ old('documento') }}" placeholder="Documento do munícipe">
+                            value="{{ old('documento', $municipe->documento) }}" placeholder="Documento do munícipe">
                     </div>
                     <div class="col-12">
                         <label for="telefone" class="form-label">Telefone:</label>
                         <input type="text" class="form-control" name="telefone" id="telefone"
-                            value="{{ old('telefone') }}" placeholder="Telefone do munícipe">
+                            value="{{ old('telefone', $municipe->telefone) }}" placeholder="Telefone do munícipe">
                     </div>
                     <div class="col-12">
                         <label for="bairro" class="form-label">Bairro:</label>
-                        <input type="text" class="form-control" name="bairro" id="bairro" value="{{ old('bairro') }}"
+                        <input type="text" class="form-control" name="bairro" id="bairro" value="{{ old('bairro', $municipe->bairro) }}"
                             placeholder="Bairro do munícipe">
                     </div>
                     <div class="col-12">
