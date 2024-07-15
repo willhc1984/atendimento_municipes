@@ -99,6 +99,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/scripts_sbadmin.js') }}"></script>
     <script src="{{ asset('js/all.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 
 
 </body>

@@ -101,4 +101,17 @@ class MunicipeController extends Controller
              return back()->withInput()->with('error', 'Munícpe não foi cadastrado! Tente novamente.');
         }
     }
+
+    //Excluir municipe
+    public function destroy(Municipe $municipe){
+        //Exclui registro
+        try{
+            $municipe->delete();
+            return back()->withInput()->with('success', 'Cadastro excluido!');
+        }catch(Exception $e){
+            //Redireciona usuario com mensagem de erro
+            return redirect()->route('municipe.index')->with('error', 'Cadastro não foi excluido! Tente novamente');
+        }
+
+    }
 }

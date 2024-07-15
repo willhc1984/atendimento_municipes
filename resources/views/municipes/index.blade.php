@@ -72,9 +72,18 @@
                                     <a href="#" class="btn btn-info btn-sm me-1 mb-1">
                                         <i class="fa-solid fa-list-check"></i> Atendimentos</a>
 
-                                    <a href="{{ route('municipe.edit', ['municipe' => $municipe->id]) }}" class="btn btn-secondary btn-sm me-1 mb-1">
+                                    <a href="{{ route('municipe.edit', ['municipe' => $municipe->id]) }}"
+                                        class="btn btn-secondary btn-sm me-1 mb-1">
                                         <i class="fa-solid fa-pen-to-square"></i>Editar</a>
 
+                                    <form id="formDelete{{ $municipe->id }}" method="POST"
+                                        action="{{ route('municipe.destroy', ['municipe' => $municipe->id]) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm me-1 mb-1 btnDelete"
+                                            data-delete-id="{{ $municipe->id }}"><i class="fa-regular fa-trash-can"></i>
+                                            Apagar</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
