@@ -12,4 +12,9 @@ class Municipe extends Model
     protected $table = 'municipes';
 
     protected $fillable = ['nome', 'documento', 'telefone', 'bairro'];
+
+    //Criar relacionamento 1:N
+    public function atendimento(){
+        return $this->hasMany(Atendimento::class);
+    }
 }
