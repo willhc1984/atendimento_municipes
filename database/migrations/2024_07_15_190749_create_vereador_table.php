@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('atendimento', function (Blueprint $table) {
+        Schema::create('vereador', function (Blueprint $table) {
             $table->id();
-            $table->string('vereador');
-            $table->string('status');
-            $table->timestamp('dataHora');
-            $table->foreignId('municipe_id')->constrained('municipes');
+            $table->string('nome');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('atendimento');
+        Schema::dropIfExists('vereador');
     }
 };

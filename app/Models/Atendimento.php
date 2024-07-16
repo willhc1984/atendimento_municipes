@@ -9,9 +9,9 @@ class Atendimento extends Model
 {
     use HasFactory;
 
-    protected $table = 'atendimentos';
+    protected $table = 'atendimento';
 
-    protected $fillable = ['vereador', 'status', 'municipe_id'];
+    protected $fillable = ['vereador', 'status', 'dataHora', 'municipe_id'];
 
     //Criar relacionamento 1:N
     public function municipe(){
