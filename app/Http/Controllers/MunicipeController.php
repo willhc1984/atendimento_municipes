@@ -55,7 +55,7 @@ class MunicipeController extends Controller
 
             //Operação concluida com exito
             DB::commit();
-
+            //Redireciona com mensagem de sucesso
             return redirect()->route('municipe.index')->with('success', 'Munícipe cadastrado com sucesso!');
         } catch (Exception $e) {
             //Operação não concluida com exito

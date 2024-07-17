@@ -54,9 +54,14 @@
                             Início
                         </a>
 
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('municipe.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></i></div>
                             Munícipes
+                        </a>
+
+                        <a class="nav-link" href="{{ route('vereador.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></i></div>
+                            Vereadores
                         </a>
 
                         <a class="nav-link" href="#">
