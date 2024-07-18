@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RequestVereador;
 use App\Http\Requests\VereadorRequest;
-use App\Models\Municipe;
 use App\Models\Vereador;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class VereadorController extends Controller
