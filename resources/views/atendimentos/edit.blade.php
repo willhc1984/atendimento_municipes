@@ -3,26 +3,26 @@
 @section('content')
     <div class="container-fluid px-4">
         <div class="mb-1 space-between-elements">
-            <h2 class="mt-3">Munícipe</h2>
+            <h2 class="mt-3">Atendimento</h2>
             <ol class="breadcrumb mb-3 mt-3">
                 <li class="breadcrumb-item"><a href="/dashboard">Início</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('municipe.index') }}">Munícipes</a></li>
-                <li class="breadcrumb-item active">Registrar atendimento</li>
+                <li class="breadcrumb-item active">Editar atendimento</li>
             </ol>
         </div>
 
         <div class="card mb-4 border-light shadow">
             <div class="card-header space-between-elements">
-                <span>Registrar atendimento - <b>{{ $municipe->nome }}</b></span>
+                <span>Editar atendimento - <b>{{ $atendimento->municipe->nome }}</b></span>
             </div>
 
             <div class="card-body">
 
                 <x-alert />
 
-                <form class="row g-3" action="{{ route('atendimento.store') }}" method="POST">
+                <form class="row g-3" action="{{ route('atendimento.update', ['atendimento' => $atendimento]) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <input type="hidden" name="municipe_id" id="municipe_id" value="{{ $municipe->id }}">
                     <input type="hidden" name="nome" id="nome" value="{{ $municipe->nome }}">
                     {{-- <div class="col-md-6 col-sm-12">
@@ -34,13 +34,13 @@
                         <div class="col-md-6 col-sm-12">
                             <label class="form-label" for="dataHora">Data/Hora:</label>
                             <input type="datetime-local" name="dataHora" id="hora" name="dataHora" class="form-control"
-                                value="{{ date('Y-m-d H:i:s') }}" placeholder="dataHora">
+                                value="{{ $atendimento->dataHora }}" placeholder="dataHora">
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <label for="vereador" class="form-label">Vereador</label>
                         <select class="form-select" name="vereador">
-                            <option selected></option>
+                            <option selected>{{ $atendimento->vereador }}</option>
                             @forelse($vereadores as $vereador)
                                 <option value="{{ $vereador->nome }}">{{ $vereador->nome }}</option>
                             @empty
@@ -50,7 +50,7 @@
                     <div class="col-md-6 col-sm-12">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-select" name="status">
-                            <option selected></option>
+                            <option selected>{{ $atendimento->status }}</option>
                             <option value="atendido">Atendido</option>
                             <option value="aguardando">Aguardando</option>
                             <option value="desistencia">Desistencia</option>

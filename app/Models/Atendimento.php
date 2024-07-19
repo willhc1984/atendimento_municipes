@@ -13,6 +13,8 @@ class Atendimento extends Model
 
     protected $fillable = ['vereador', 'status', 'dataHora', 'municipe_id'];
 
+    public $timestamps = false;
+
     //Criar relacionamento 1:N
     public function municipe(){
         return $this->belongsTo(Municipe::class);
