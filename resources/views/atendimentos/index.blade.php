@@ -71,7 +71,6 @@
                                 <td>{{ \Carbon\Carbon::parse($atendimento->dataHora)->tz('America/Sao_Paulo')->format('H:i:s') }}</td>
                                 <td>{{ $atendimento->status }}</td>
                                 <td class="d-md-flex justify-content-center">
-
                                     <a href="{{ route('atendimento.edit', ['atendimento' => $atendimento->id]) }}"
                                         class="btn btn-secondary btn-sm me-1 mb-1">
                                         <i class="fa-solid fa-pen-to-square"></i>Editar</a>

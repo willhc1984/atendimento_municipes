@@ -107,4 +107,18 @@ class AtendimentoController extends Controller
             return redirect()->back()->with('error', 'Atendimento não atualizado! Tente novamente.' . $e->getMessage());
         }
     }
+
+    //Excluir atendimento 
+    public function destroy(Atendimento $atendimento){
+        try{
+            //Exclui do anco de dados
+            $atendimento->delete();
+            //Redireciona com msg de sucesso
+            return redirect()->route('atendimento.index', ['municipe' => $atendimento->municipe_id])
+                ->with('success', 'Atendimento excluido!');
+        }catch(Exception $e){   
+            //Redireciona ususario com msg de erro
+            return redirect()->back()->with('error', 'Atendimento não excluído! Tente novamente.');
+        }
+    }
 }
