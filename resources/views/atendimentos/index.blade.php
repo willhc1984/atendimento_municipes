@@ -19,11 +19,11 @@
                 <span>Pesquisar</span>
             </div>
             <div class="card-body">
-                <form action="#">
+                <form action="{{ route('atendimento.index', ['municipe' => $municipe->id]) }}">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            <label class="form-label" for="name">Data:</label>
-                            <input type="text" name="nome" id="nome" class="form-control" value=""
+                            <label class="form-label" for="data">Data:</label>
+                            <input type="date" name="data" id="data" class="form-control" value=""
                                 placeholder="Nome do munícipe">
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="col-md-4 col-sm-12 mt-2 pt-2">
                             <button type="submit" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass">
                                 </i> Pesquisar</button>
-                            <a href="{{ route('municipe.index') }}" class="btn btn-warning btn-sm"><i
+                            <a href="{{ route('atendimento.index', ['municipe' => $municipe->id]) }}" class="btn btn-warning btn-sm"><i
                                     class="fa-solid fa-trash"></i>Limpar</a>
                         </div>
                     </div>

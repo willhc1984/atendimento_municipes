@@ -12,14 +12,22 @@ use Illuminate\Support\Facades\DB;
 
 class AtendimentoController extends Controller
 {
-    //Listar atendimentos do municipe
-    public function index(Municipe $municipe)
+    //Listar atendimentos do municipe 
+    public function index(Request $request, Municipe $municipe)
     {
-        //Busca atendimentos do municipe no banco de dados
-        $atendimentos = Atendimento::with('municipe')
-            ->where('municipe_id', $municipe->id)
-            ->orderBy('dataHora')
-            ->paginate(10);
+        //Busca atendimentos do municipe no banco de dados conforme parametros do form de pesquisa
+        $atendimentos = Atendimento::when($request->has('data'), function($whenQuery) use ($request){
+            $whenQuery->whereDate('dataHora', '=', $request->data);
+        })
+        ->where('municipe_id', $municipe->id)
+        ->orderBy('dataHora')
+        ->paginate(15)
+        ->withQueryString();
+
+        // $atendimentos = Atendimento::with('municipe')
+        //     ->where('municipe_id', $municipe->id)
+        //     ->orderBy('dataHora')
+        //     ->paginate(10);
 
         //Carrega a view
         return view('atendimentos.index', [
