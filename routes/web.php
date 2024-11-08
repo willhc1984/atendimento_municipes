@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AtendimentoController::class, 'home'])->name('atendimento.home');
 
 //Municipes
 Route::get('/index-municipes', [MunicipeController::class, 'index'])->name('municipe.index');

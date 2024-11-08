@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\DB;
 class AtendimentoController extends Controller
 {
 
+    //Abre tela inicial
+    public function home() {
+        return view('atendimentos.home');
+    }
+
     //Listar todos atendimentos
     public function all(Request $request)
     {

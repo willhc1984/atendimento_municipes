@@ -49,7 +49,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('atendimento.home') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-school-flag"></i></div>
                             Início
                         </a>
@@ -94,11 +94,7 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Camara Municipal de Votorantim {{ date('Y') }}
                         </div>
-                        <div>
-                            <a href="#" style="text-decoration: none;">Privacy Policy</a>
-                            &middot;
-                            <a href="#" style="text-decoration: none;">Terms &amp; Conditions</a>
-                        </div>
+                        
                     </div>
                 </div>
             </footer>
