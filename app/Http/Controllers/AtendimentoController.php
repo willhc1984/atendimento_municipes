@@ -12,6 +12,23 @@ use Illuminate\Support\Facades\DB;
 
 class AtendimentoController extends Controller
 {
+
+    //Listar todos atendimentos
+    public function all(Request $request)
+    {
+        //Busca atendimentos no banco de dados conforme parametros do form de pesquisa
+        $atendimentos = Atendimento::when($request->has('data'), function($whenQuery) use ($request){
+            $whenQuery->whereDate('dataHora', '=', $request->data);
+        })
+        ->orderByDesc('dataHora')
+        ->paginate(5);
+
+        //Carrega a view
+        return view('atendimentos.all', [
+            'atendimentos' => $atendimentos
+        ]);
+    }
+
     //Listar atendimentos do municipe 
     public function index(Request $request, Municipe $municipe)
     {
@@ -106,7 +123,7 @@ class AtendimentoController extends Controller
             //Transação com sucesso
             DB::commit();
             //Redireciona com msg de sucesso
-            return redirect()->route('atendimento.index', ['municipe' => $atendimento->municipe_id])->with('success', 'Atendimento atualizado!');
+            return redirect()->route('atendimento.all')->with('success', 'Atendimento atualizado!');
 
         } catch (Exception $e) {
             //Transação não concluida

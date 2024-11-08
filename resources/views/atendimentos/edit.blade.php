@@ -51,9 +51,9 @@
                         <label for="status" class="form-label">Status</label>
                         <select class="form-select" name="status">
                             <option selected>{{ $atendimento->status }}</option>
-                            <option value="atendido">Atendido</option>
-                            <option value="aguardando">Aguardando</option>
-                            <option value="desistencia">Desistencia</option>
+                            <option value="Atendido">Atendido</option>
+                            <option value="Aguardando">Aguardando</option>
+                            <option value="Desistencia">Desistencia</option>
                         </select>
                     </div>
                     <div class="col-12">

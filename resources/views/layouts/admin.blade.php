@@ -54,6 +54,11 @@
                             Início
                         </a>
 
+                        <a class="nav-link" href="{{ route('atendimento.all') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></i></div>
+                            Atendimentos
+                        </a>
+
                         <a class="nav-link" href="{{ route('municipe.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></i></div>
                             Munícipes

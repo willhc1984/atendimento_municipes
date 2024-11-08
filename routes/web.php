@@ -38,6 +38,7 @@ Route::put('/update-vereadores/{vereador}', [VereadorController::class, 'update'
 Route::delete('/destroy-vereadores/{vereador}', [VereadorController::class, 'destroy'])->name('vereador.destroy');
 
 //Atendimentos
+Route::get('/index-atendimentos', [AtendimentoController::class, 'all'])->name('atendimento.all');
 Route::get('/index-atendimentos/{municipe}', [AtendimentoController::class, 'index'])->name('atendimento.index');
 Route::get('/create-atendimentos/{municipe}', [AtendimentoController::class, 'create'])->name('atendimento.create');
 Route::post('/store-atendimentos', [AtendimentoController::class, 'store'])->name('atendimento.store');
