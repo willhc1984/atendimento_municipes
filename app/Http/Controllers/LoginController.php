@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -32,5 +29,13 @@ class LoginController extends Controller
         }
 
         return redirect()->route('atendimento.home');
+    }
+
+    //Logout de usuario
+    public function destroy()
+    {
+        Auth::logout();        
+        //redireciona usuario
+        return redirect()->route('login.index')->with('success', 'Você saiu do sistema.');
     }
 }

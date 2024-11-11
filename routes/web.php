@@ -23,6 +23,7 @@ Route::get('/', [AtendimentoController::class, 'home'])->name('atendimento.home'
 //Login
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
+Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 
 //Municipes
 Route::get('/index-municipes', [MunicipeController::class, 'index'])->name('municipe.index');

@@ -37,7 +37,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                    <li><a class="dropdown-item" href="{{ route('login.destroy') }}">Sair</a></li>
                 </ul>
             </li>
         </ul>
@@ -69,7 +69,7 @@
                             Vereadores
                         </a>
 
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('login.destroy') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
                             Sair
                         </a>
