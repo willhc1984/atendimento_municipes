@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MunicipeController;
 use App\Http\Controllers\VereadorController;
 use App\Models\Vereador;
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AtendimentoController::class, 'home'])->name('atendimento.home');
+
+//Login
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
 
 //Municipes
 Route::get('/index-municipes', [MunicipeController::class, 'index'])->name('municipe.index');
