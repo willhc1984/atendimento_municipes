@@ -51,17 +51,17 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">#ID</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Documento</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Bairro</th>
-                            <th scope="col">Ações</th>
+                            <th scope="col" class="text-align-center;">#ID</th>
+                            <th scope="col" style="text-align: center;">Nome</th>
+                            <th scope="col" style="text-align: center;">Documento</th>
+                            <th scope="col" style="text-align: center;">Telefone</th>
+                            <th scope="col" style="text-align: center;">Bairro</th>
+                            <th scope="col" style="text-align: center;">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($municipes as $municipe)
-                            <tr>
+                            <tr style="text-align: center;">
                                 <th scope="row">{{ $municipe->id }}</th>
                                 <td>{{ $municipe->nome }}</td>
                                 <td>{{ $municipe->documento }}</td>
@@ -75,7 +75,8 @@
                                     <a href="{{ route('municipe.edit', ['municipe' => $municipe->id]) }}"
                                         class="btn btn-secondary btn-sm me-1 mb-1">
                                         <i class="fa-solid fa-pen-to-square"></i>Editar</a>
-
+                                    
+                                    @can('destroy-municipes')
                                     <form id="formDelete{{ $municipe->id }}" method="POST"
                                         action="{{ route('municipe.destroy', ['municipe' => $municipe->id]) }}">
                                         @csrf
@@ -84,6 +85,7 @@
                                             data-delete-id="{{ $municipe->id }}"><i class="fa-regular fa-trash-can"></i>
                                             Apagar</button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @empty

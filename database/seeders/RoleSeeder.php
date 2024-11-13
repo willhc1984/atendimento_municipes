@@ -41,9 +41,10 @@ class RoleSeeder extends Seeder
 
             $recepcionista->givePermissionTo([
                 'index-municipes', 'create-municipes', 
-                'show-municipes', 'edit-municipes', 'destroy-municipes',
+                'show-municipes', 'edit-municipes',
                 'index-atendimentos', 'create-atendimentos', 
-                'show-atendimentos', 'edit-atendimentos', 'destroy-atendimentos'
+                'show-atendimentos', 'edit-atendimentos', 'destroy-atendimentos',
+                'index-vereadores'
             ]);
         }
     }

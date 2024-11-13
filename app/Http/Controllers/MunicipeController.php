@@ -19,7 +19,7 @@ class MunicipeController extends Controller
         })
 
             ->orderBy('nome')
-            ->paginate(20)
+            ->paginate(60)
             ->withQueryString();
 
         // $municipes = Municipe::orderBy('nome')->paginate(30);

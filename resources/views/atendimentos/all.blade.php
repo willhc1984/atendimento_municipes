@@ -51,18 +51,19 @@
 
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr style="text-align: center;">
                             <th scope="col">#ID</th>
                             <th scope="col">Munícipe</th>
                             <th scope="col">Vereador</th>
                             <th scope="col">Data</th>
                             <th scope="col">Hora</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($atendimentos as $atendimento)
-                            <tr>
+                            <tr style="text-align: center;">
                                 <th scope="row">{{ $atendimento->id }}</th>
                                 <td>{{ $atendimento->municipe->nome }}</td>
                                 <td>{{ $atendimento->vereador }}</td>

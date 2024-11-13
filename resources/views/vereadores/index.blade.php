@@ -25,14 +25,15 @@
 
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr style="text-align: center;">
                             <th scope="col">#ID</th>
                             <th scope="col">Nome</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($vereadores as $vereador)
-                            <tr>
+                            <tr style="text-align: center;">
                                 <th scope="row">{{ $vereador->id }}</th>
                                 <td>{{ $vereador->nome }}</td>
                                 <td class="d-md-flex justify-content-center">
