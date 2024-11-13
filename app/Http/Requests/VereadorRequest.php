@@ -22,13 +22,15 @@ class VereadorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required'
+            'nome' => 'required',
+            'ativo' => 'required'
         ];
     }
 
     public function messages(): array{
         return [
             'nome.required' => 'Nome do vereador é obrigatório!',
+            'ativo.required' => 'Defina se vereador está ativo ou não!',
         ];
     }
 }

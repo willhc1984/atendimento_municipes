@@ -44,7 +44,8 @@ class VereadorController extends Controller
         try{
             //Cadastra no banco de dados
             $vereador = Vereador::create([
-                'nome' => $request->nome
+                'nome' => $request->nome,
+                'ativo' => $request->ativo
             ]);
 
             //Operação concluida com exito
@@ -75,7 +76,8 @@ class VereadorController extends Controller
 
         try{
             $vereador->update([
-                'nome' => $request->nome
+                'nome' => $request->nome,
+                'ativo' => $request->ativo
             ]);
 
             //Operação concluida com exito

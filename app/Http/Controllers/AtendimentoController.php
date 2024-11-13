@@ -61,7 +61,7 @@ class AtendimentoController extends Controller
     //Abrir formulario para registrar atendimento
     public function create(Municipe $municipe)
     {
-        $vereadores = Vereador::orderBy('nome')->get();
+        $vereadores = Vereador::where(['ativo' => 'S'])->orderBy('nome')->get();
         return view('atendimentos.create', [
             'municipe' => $municipe,
             'vereadores' => $vereadores

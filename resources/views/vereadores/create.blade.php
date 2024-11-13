@@ -32,6 +32,14 @@
                         <input type="text" class="form-control" name="nome" id="nome" value="{{ old('nome') }}"
                             placeholder="Nome do vereador">
                     </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label for="ativo" class="form-label">Ativo</label>
+                        <select class="form-select" name="ativo">
+                            <option selected></option>
+                            <option value="S">Sim</option>
+                            <option value="N">Não</option>
+                        </select>
+                    </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary bt-sm">Salvar</button>
                     </div>

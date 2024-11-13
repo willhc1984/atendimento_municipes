@@ -13,5 +13,5 @@ class Vereador extends Model
 
     protected $table = 'vereador';
 
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'ativo'];
 }
