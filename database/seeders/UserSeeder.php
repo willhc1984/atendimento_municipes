@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         if(!User::where('email', 'henrique@votorantim.sp.leg.br')->first()){
             $superAdmin = User::create([
-                'name' => 'william',
+                'name' => 'William',
                 'email' => 'henrique@votorantim.sp.leg.br',
                 'password' => Hash::make('123', ['rounds' => 10])
             ]);
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
 
         if(!User::where('email', 'paula@votorantim.sp.leg.br')->first()){
             $recepcionista = User::create([
-                'name' => 'paula',
+                'name' => 'Paula',
                 'email' => 'recepcao@votorantim.sp.leg.br',
                 'password' => Hash::make('123', ['rounds' => 10])
             ]);

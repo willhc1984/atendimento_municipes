@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class VereadorController extends Controller
 {
+
+    //Executar construct para definir as permissões
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:index-vereadores', ['only' => ['index']]);
+        $this->middleware('permission:create-vereadores', ['only' => ['create']]);
+        $this->middleware('permission:edit-vereadores', ['only' => ['edit']]);
+        $this->middleware('permission:show-vereadores', ['only' => ['show']]);
+        $this->middleware('permission:destroy-vereadores', ['only' => ['destroy']]);
+    }
+
     //Listar vereadores
     public function index(){
         $vereadores = Vereador::orderBy('nome')->paginate(15);

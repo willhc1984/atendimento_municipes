@@ -78,6 +78,9 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Usuário:
+                        @if (auth()->check())
+                            {{ auth()->user()->name }}
+                        @endif
                     </div>
                 </div>
             </nav>
@@ -94,7 +97,7 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Camara Municipal de Votorantim {{ date('Y') }}
                         </div>
-                        
+
                     </div>
                 </div>
             </footer>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class LoginController extends Controller
 {
@@ -29,6 +31,22 @@ class LoginController extends Controller
             return back()->withInput()->with('error', 'Credenciais inválidas!');
         }
 
+        //Obter usuario autenticado
+        $user = Auth::user();
+        $user = User::find($user->id);
+
+        //Verifica se o papel é super admin
+        if($user->hasRole('Super Admin')){
+            $permissions = Permission::pluck('name')->toArray();
+        }else{
+            //Recupera as permissões do papel
+            $permissions = $user->getPermissionsViaRoles()->pluck('name')->toArray();
+        }
+
+        //Atribui as permissões ao usuario
+        $user->syncPermissions($permissions);
+
+        //Redireciona usuario
         return redirect()->route('atendimento.home');
     }
 
