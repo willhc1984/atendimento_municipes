@@ -21,22 +21,35 @@ class AtendimentoController extends Controller
     //Listar todos atendimentos
     public function all(Request $request)
     {
+        //Busca vereadores
+        $vereadores = Vereador::orderBy('nome')->get();
+
         //Busca atendimentos no banco de dados conforme parametros do form de pesquisa
-        $atendimentos = Atendimento::when($request->has('data'), function($whenQuery) use ($request){
-            $whenQuery->whereDate('dataHora', '=', $request->data);
+         $atendimentos = Atendimento::when($request->has('vereador'), function ($whenQuery) use ($request) {
+            $whenQuery->where('vereador', 'like', '%' . $request->vereador . '%');
         })
-        ->orderByDesc('dataHora')
-        ->paginate(5);
+            ->when($request->filled('data_inicial'), function ($whenQuery) use ($request) {
+                $whenQuery->where('dataHora', '>=', \Carbon\Carbon::parse($request->data_inicial)->format('Y-m-d'));
+            })
+            ->when($request->filled('data_final'), function ($whenQuery) use ($request) {
+                $whenQuery->where('dataHora', '<=', \Carbon\Carbon::parse($request->data_final)->format('Y-m-d'));
+            })
+
+            ->orderByDesc('dataHora')
+            ->paginate(30)
+            ->withQueryString();
 
         //Carrega a view
         return view('atendimentos.all', [
-            'atendimentos' => $atendimentos
+            'atendimentos' => $atendimentos,
+            'vereadores' => $vereadores
         ]);
     }
 
     //Listar atendimentos do municipe 
     public function index(Request $request, Municipe $municipe)
     {
+        
         //Busca atendimentos do municipe no banco de dados conforme parametros do form de pesquisa
         $atendimentos = Atendimento::when($request->has('data'), function($whenQuery) use ($request){
             $whenQuery->whereDate('dataHora', '=', $request->data);

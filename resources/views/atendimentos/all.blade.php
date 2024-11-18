@@ -22,8 +22,22 @@
                 <form action="{{ route('atendimento.all') }}">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            <label class="form-label" for="data">Data:</label>
-                            <input type="date" name="data" id="data" class="form-control" value="" />
+                            <label class="form-label" for="data_inicial">Data inicial:</label>
+                            <input type="date" name="data_inicial" id="data_inicial" class="form-control" value="" />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label class="form-label" for="data_final">Data final:</label>
+                            <input type="date" name="data_final" id="data_final" class="form-control" value="" />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="vereador" class="form-label">Vereador</label>
+                            <select class="form-select" name="vereador">
+                                <option selected></option>
+                                @forelse($vereadores as $vereador)
+                                    <option value="{{ $vereador->nome }}">{{ $vereador->nome }}</option>
+                                @empty
+                                @endforelse
+                            </select>
                         </div>
                     </div>
                     <div class="row">
