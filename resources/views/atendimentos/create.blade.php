@@ -5,7 +5,7 @@
         <div class="mb-1 space-between-elements">
             <h2 class="mt-3">Atendimento</h2>
             <ol class="breadcrumb mb-3 mt-3">
-                <li class="breadcrumb-item"><a href="/dashboard">Início</a></li>
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('municipe.index') }}">Munícipes</a></li>
                 <li class="breadcrumb-item active">Registrar atendimento</li>
             </ol>

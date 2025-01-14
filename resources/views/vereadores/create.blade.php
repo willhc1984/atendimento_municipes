@@ -5,7 +5,7 @@
         <div class="mb-1 space-between-elements">
             <h2 class="mt-3">Vereador</h2>
             <ol class="breadcrumb mb-3 mt-3">
-                <li class="breadcrumb-item"><a href="/dashboard">Início</a></li>
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('vereador.index') }}">Vereadores</a></li>
                 <li class="breadcrumb-item active">Cadastrar</li>
             </ol>
