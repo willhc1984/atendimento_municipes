@@ -12,7 +12,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>Curso Celke</title>
+    <title>Câmara Municipal de Votorantim</title>
 </head>
 
 <body class="sb-nav-fixed">

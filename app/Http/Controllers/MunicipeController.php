@@ -110,7 +110,7 @@ class MunicipeController extends Controller
             return back()->withInput()->with('success', 'Cadastro excluido!');
         }catch(Exception $e){
             //Redireciona usuario com mensagem de erro
-            return redirect()->route('municipe.index')->with('error', 'Cadastro não foi excluido! Tente novamente');
+            return redirect()->route('municipe.index')->with('error', 'Cadastro não excluido! Pode ser que exista registros de atendimentos para o munícipe. Exclua os atendimentos e tente novamente.');
         }
 
     }

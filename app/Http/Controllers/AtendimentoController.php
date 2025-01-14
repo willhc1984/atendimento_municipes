@@ -49,13 +49,12 @@ class AtendimentoController extends Controller
     //Listar atendimentos do municipe 
     public function index(Request $request, Municipe $municipe)
     {
-        
         //Busca atendimentos do municipe no banco de dados conforme parametros do form de pesquisa
         $atendimentos = Atendimento::when($request->has('data'), function($whenQuery) use ($request){
             $whenQuery->whereDate('dataHora', '=', $request->data);
         })
         ->where('municipe_id', $municipe->id)
-        ->orderBy('dataHora')
+        ->orderByDesc('dataHora')
         ->paginate(15)
         ->withQueryString();
 
@@ -154,13 +153,13 @@ class AtendimentoController extends Controller
     //Excluir atendimento 
     public function destroy(Atendimento $atendimento){
         try{
-            //Exclui do anco de dados
+            //Exclui do banco de dados
             $atendimento->delete();
             //Redireciona com msg de sucesso
-            return redirect()->route('atendimento.index', ['municipe' => $atendimento->municipe_id])
+            return redirect()->route('atendimento.all')
                 ->with('success', 'Atendimento excluido!');
         }catch(Exception $e){   
-            //Redireciona ususario com msg de erro
+            //Redireciona usuario com msg de erro
             return redirect()->back()->with('error', 'Atendimento não excluído! Tente novamente.');
         }
     }
