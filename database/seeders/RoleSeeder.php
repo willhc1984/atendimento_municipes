@@ -13,38 +13,58 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        if(!Role::where('name', 'Super Admin')->first()){
+        if (!Role::where('name', 'Super Admin')->first()) {
             Role::create([
                 'name' => 'Super Admin'
             ]);
         }
 
-        if(!Role::where('name', 'Admin')->first()){
+        if (!Role::where('name', 'Admin')->first()) {
             $admin = Role::create([
                 'name' => 'Admin'
             ]);
 
             $admin->givePermissionTo([
-                'index-municipes', 'create-municipes', 
-                'show-municipes', 'edit-municipes', 'destroy-municipes',
-                'index-vereadores', 'create-vereadores', 
-                'show-vereadores', 'edit-vereadores', 'destroy-vereadores',
-                'index-atendimentos', 'create-atendimentos', 
-                'show-atendimentos', 'edit-atendimentos', 'destroy-atendimentos',
+                'index-municipes',
+                'create-municipes',
+                'show-municipes',
+                'edit-municipes',
+                'destroy-municipes',
+                'index-vereadores',
+                'create-vereadores',
+                'show-vereadores',
+                'edit-vereadores',
+                'destroy-vereadores',
+                'index-atendimentos',
+                'create-atendimentos',
+                'show-atendimentos',
+                'edit-atendimentos',
+                'destroy-atendimentos',
+                'index-usuarios',
+                'show-usuarios',
+                'edit-usuarios',
+                'create-usuarios',
+                'destroy-usuarios'
             ]);
         }
 
-        if(!Role::where('name', 'Recepcionista')->first()){
+        if (!Role::where('name', 'Recepcionista')->first()) {
             $recepcionista = Role::create([
                 'name' => 'Recepcionista'
             ]);
 
             $recepcionista->givePermissionTo([
-                'index-municipes', 'create-municipes', 
-                'show-municipes', 'edit-municipes',
-                'index-atendimentos', 'create-atendimentos', 
-                'show-atendimentos', 'edit-atendimentos', 'destroy-atendimentos',
-                'index-vereadores', 'index-users'
+                'index-municipes',
+                'create-municipes',
+                'show-municipes',
+                'edit-municipes',
+                'index-atendimentos',
+                'create-atendimentos',
+                'show-atendimentos',
+                'edit-atendimentos',
+                'destroy-atendimentos',
+                'index-vereadores',
+                'index-usuarios'
             ]);
         }
     }

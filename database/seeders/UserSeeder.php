@@ -14,24 +14,24 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        if(!User::where('email', 'henrique@votorantim.sp.leg.br')->first()){
-            $superAdmin = User::create([
+        if (!User::where('email', 'henrique@votorantim.sp.leg.br')->first()) {
+            $admin = User::create([
                 'name' => 'William',
                 'email' => 'henrique@votorantim.sp.leg.br',
                 'password' => Hash::make('#Votolegcmv@2023#', ['rounds' => 10])
             ]);
-            
+
             //Atribuir papel ao usuario
-            $superAdmin->assignRole('Super Admin');
+            $admin->assignRole('Admin');
         }
 
-        if(!User::where('email', 'paula@votorantim.sp.leg.br')->first()){
+        if (!User::where('email', 'paula@votorantim.sp.leg.br')->first()) {
             $recepcionista = User::create([
                 'name' => 'Paula',
                 'email' => 'recepcao@votorantim.sp.leg.br',
                 'password' => Hash::make('Paula@2025', ['rounds' => 10])
             ]);
-            
+
             //Atribuir papel ao usuario
             $recepcionista->assignRole('Recepcionista');
         }

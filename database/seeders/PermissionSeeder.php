@@ -13,20 +13,33 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            'index-municipes', 'create-municipes', 
-            'show-municipes', 'edit-municipes', 'destroy-municipes',
-            'index-atendimentos', 'create-atendimentos', 
-            'show-atendimentos', 'edit-atendimentos', 'destroy-atendimentos',
-            'index-vereadores', 'create-vereadores', 
-            'show-vereadores', 'edit-vereadores', 'destroy-vereadores',
-            'index-users', 'show-users', 'edit-users', 'create-users', 'destroy-users'
+            'index-municipes',
+            'create-municipes',
+            'show-municipes',
+            'edit-municipes',
+            'destroy-municipes',
+            'index-atendimentos',
+            'create-atendimentos',
+            'show-atendimentos',
+            'edit-atendimentos',
+            'destroy-atendimentos',
+            'index-vereadores',
+            'create-vereadores',
+            'show-vereadores',
+            'edit-vereadores',
+            'destroy-vereadores',
+            'index-usuarios',
+            'show-usuarios',
+            'edit-usuarios',
+            'create-usuarios',
+            'destroy-usuarios'
 
         ];
 
-        foreach($permissions as $permission){
+        foreach ($permissions as $permission) {
             $existingPermission = Permission::where('name', $permission)->first();
 
-            if(!$existingPermission){
+            if (!$existingPermission) {
                 Permission::create(['name' => $permission, 'guard_name' => 'web']);
             }
         }
