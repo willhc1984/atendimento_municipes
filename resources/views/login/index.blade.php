@@ -10,7 +10,7 @@
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-1 mt-4">Registro de atendimento ao munícipe</h3>
+                                    <h3 class="text-center font-weight-light my-1 mt-4" style="font-family: poppins">Registro de atendimento ao munícipe</h3>
                                     <div class="d-flex justify-content-center mt-4 mb-4"> <img
                                             src="{{ asset('/img/logo.png') }}" style="width: 200px; height: 150px;"/></div>
                                 </div>

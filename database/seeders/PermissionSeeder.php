@@ -19,6 +19,7 @@ class PermissionSeeder extends Seeder
             'show-atendimentos', 'edit-atendimentos', 'destroy-atendimentos',
             'index-vereadores', 'create-vereadores', 
             'show-vereadores', 'edit-vereadores', 'destroy-vereadores',
+            'index-users', 'show-users', 'edit-users', 'create-users', 'destroy-users'
 
         ];
 

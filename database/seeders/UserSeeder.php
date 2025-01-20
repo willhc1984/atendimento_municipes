@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             $superAdmin = User::create([
                 'name' => 'William',
                 'email' => 'henrique@votorantim.sp.leg.br',
-                'password' => Hash::make('123', ['rounds' => 10])
+                'password' => Hash::make('#Votolegcmv@2023#', ['rounds' => 10])
             ]);
             
             //Atribuir papel ao usuario
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             $recepcionista = User::create([
                 'name' => 'Paula',
                 'email' => 'recepcao@votorantim.sp.leg.br',
-                'password' => Hash::make('123', ['rounds' => 10])
+                'password' => Hash::make('Paula@2025', ['rounds' => 10])
             ]);
             
             //Atribuir papel ao usuario

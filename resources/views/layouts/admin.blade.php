@@ -50,23 +50,28 @@
                     <div class="nav">
 
                         <a class="nav-link" href="{{ route('atendimento.home') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-school-flag"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-building-columns"></i></div>
                             Início
                         </a>
 
                         <a class="nav-link" href="{{ route('atendimento.all') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-bell-concierge"></i></div>
                             Atendimentos
                         </a>
 
                         <a class="nav-link" href="{{ route('municipe.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-people-line"></i></div>
                             Munícipes
                         </a>
 
                         <a class="nav-link" href="{{ route('vereador.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
                             Vereadores
+                        </a>
+
+                        <a class="nav-link" href="{{ route('user.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user-gear"></i></i></div>
+                            Usuários
                         </a>
 
                         <a class="nav-link" href="{{ route('login.destroy') }}">

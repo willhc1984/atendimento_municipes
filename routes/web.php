@@ -3,6 +3,7 @@
 use App\Http\Controllers\AtendimentoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MunicipeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VereadorController;
 use App\Models\Vereador;
 use Illuminate\Support\Facades\Route;
@@ -58,4 +59,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/update-atendimentos/{atendimento}', [AtendimentoController::class, 'update'])->name('atendimento.update');
     Route::delete('/destroy-atendimentos/{atendimento}', [AtendimentoController::class, 'destroy'])->name('atendimento.destroy');
 
+    //Usuários
+    Route::get('/index-usuarios', [UserController::class, 'index'])->name('user.index');
+    Route::get('/show-user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
+    Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
+    Route::get('/edit-user/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/update-user/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/edit-user-password/{user}', [UserController::class, 'editPassword'])->name('user.edit-password');
+    Route::put('/update-user-password/{user}', [UserController::class, 'updatePassword'])->name('user.update-password');
+    Route::delete('/destroy-user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    
 });

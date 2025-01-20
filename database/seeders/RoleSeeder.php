@@ -44,7 +44,7 @@ class RoleSeeder extends Seeder
                 'show-municipes', 'edit-municipes',
                 'index-atendimentos', 'create-atendimentos', 
                 'show-atendimentos', 'edit-atendimentos', 'destroy-atendimentos',
-                'index-vereadores'
+                'index-vereadores', 'index-users'
             ]);
         }
     }
