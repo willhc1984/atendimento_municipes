@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -128,6 +129,27 @@ class UserController extends Controller
             DB::rollBack();
             //Redireciona com mensagem de erro
             return back()->withInput()->with('error', 'Usuário não editado.');
+        }
+    }
+
+    //Excluir usuario
+    public function destroy(User $user)
+    {
+        if (Auth::id() == $user->id) {
+            //Redireciona com msg de erro
+            return redirect()->route('user.index')->with('error', 'Usuário logado não pode ser exluido!');
+        }
+
+        try {
+            //Exclui usuario
+            $user->delete();
+            //Remove papeis atribuidos ao usuario
+            $user->syncRoles([]);
+            //Redireciona com msg de sucesso
+            return redirect()->route('user.index')->with('success', 'Usuário excluído!');
+        } catch (Exception $e) {
+            //Redireciona com msg de erro
+            return redirect()->route('user.index')->with('error', 'Usuário não exluído! Tente novamente.');
         }
     }
 }
