@@ -13,7 +13,7 @@
     <title>Registro de atendimento</title>
 </head>
 
-<body class="bg-primary">
+<body class="bg-info">
 
     @yield('content')
 

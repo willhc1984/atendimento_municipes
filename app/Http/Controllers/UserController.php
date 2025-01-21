@@ -81,4 +81,53 @@ class UserController extends Controller
             return back()->withInput()->with('error', 'Usuário não cadastrado! Tente novamente.');
         }
     }
+
+    //Formulario para editar usuario
+    public function edit(User $user)
+    {
+        //Recupera od papeis do banco de dados
+        $roles = Role::pluck('name')->all();
+
+        //Recupera papeis do usuario
+        $userRoles = $user->roles->pluck('name')->first();
+
+        //Carrega a view
+        return view('users.edit', [
+            'menu' => 'usuarios',
+            'user' => $user,
+            'roles' => $roles,
+            'userRoles' => $userRoles
+        ]);
+    }
+
+    //Salva edição do usuario
+    public function update(UserRequest $request, User $user)
+    {
+        //Valida formulario
+        $request->validated();
+
+        //Inicia a transação
+        DB::beginTransaction();
+
+        try {
+            //Editar as informação no banco de dados
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            //Editar o papel do usuario
+            $user->syncRoles($request->roles);
+
+            DB::commit();
+
+            //Redirecionar usuario e enviar mensagem de sucesso
+            return redirect()->route('user.index', ['user' => $request->user])->with('success', 'Usuário editado!');
+        } catch (Exception $e) {
+            //Operação nao concluida
+            DB::rollBack();
+            //Redireciona com mensagem de erro
+            return back()->withInput()->with('error', 'Usuário não editado.');
+        }
+    }
 }
