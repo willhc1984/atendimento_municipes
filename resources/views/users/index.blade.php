@@ -39,9 +39,6 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td class="d-md-flex justify-content-center">
-                                    <a href="{{ route('user.show', ['user' => $user->id]) }}"
-                                        class="btn btn-secondary btn-sm me-1 mb-1">
-                                        <i class="fa-solid fa-magnifying-glass"></i> Visualizar</a>
                                     <a href="{{ route('user.edit', ['user' => $user->id]) }}"
                                         class="btn btn-primary btn-sm me-1 mb-1">
                                         <i class="fa-solid fa-pen-to-square"></i> Editar</a>

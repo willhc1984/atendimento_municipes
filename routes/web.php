@@ -3,6 +3,7 @@
 use App\Http\Controllers\AtendimentoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MunicipeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VereadorController;
 use App\Models\Vereador;
@@ -27,10 +28,10 @@ Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.pro
 
 
 Route::group(['middleware' => 'auth'], function () {
-    
+
     //Pagina inicial
     Route::get('/', [AtendimentoController::class, 'home'])->name('atendimento.home');
-    
+
     //Logout
     Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 
@@ -69,5 +70,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-user-password/{user}', [UserController::class, 'editPassword'])->name('user.edit-password');
     Route::put('/update-user-password/{user}', [UserController::class, 'updatePassword'])->name('user.update-password');
     Route::delete('/destroy-user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
-    
+
+    //Perfil
+    Route::get('/show-profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/update-profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/edit-profile-password', [ProfileController::class, 'editPassword'])->name('profile.edit-password');
+    Route::put('/update-profile-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 });
