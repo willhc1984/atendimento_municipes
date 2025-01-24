@@ -17,7 +17,9 @@ class MunicipeController extends Controller
         $municipes = Municipe::when($request->has('nome'), function ($whenQuery) use ($request) {
             $whenQuery->where('nome', 'like', '%' . $request->nome . '%');
         })
-
+            ->when($request->has('id'), function ($whenQuery) use ($request) {
+                $whenQuery->where('id', '=', $request->id);
+            })
             ->orderBy('nome')
             ->paginate(60)
             ->withQueryString();
@@ -56,12 +58,12 @@ class MunicipeController extends Controller
             //Operação concluida com exito
             DB::commit();
             //Redireciona com mensagem de sucesso
-            return redirect()->route('municipe.index')->with('success', 'Munícipe cadastrado com sucesso!');
+            return redirect()->route('municipe.index', ['id' => $municipe->id])->with('success', 'Munícipe cadastrado!');
         } catch (Exception $e) {
             //Operação não concluida com exito
             DB::rollBack();
             //Redireciona com meg de erro
-            return back()->withInput()->with('error', 'Munícpe não foi cadastrado! Tente novamente.');
+            return back()->withInput()->with('error', 'Munícipe não foi cadastrado! Tente novamente.');
         }
     }
 
@@ -92,26 +94,25 @@ class MunicipeController extends Controller
             DB::commit();
 
             //Redireciona co mensagem de sucesso
-            return redirect()->route('municipe.index')->with('success', 'Munícipe editado com sucesso!');
-
+            return redirect()->route('municipe.index')->with('success', 'Munícipe editado!');
         } catch (Exception $e) {
-             //Operação não concluida com exito
-             DB::rollBack();
-             //Redireciona com msg de erro
-             return back()->withInput()->with('error', 'Munícpe não foi cadastrado! Tente novamente.');
+            //Operação não concluida com exito
+            DB::rollBack();
+            //Redireciona com msg de erro
+            return back()->withInput()->with('error', 'Munícipe não foi cadastrado! Tente novamente.');
         }
     }
 
     //Excluir municipe
-    public function destroy(Municipe $municipe){
+    public function destroy(Municipe $municipe)
+    {
         //Exclui registro
-        try{
+        try {
             $municipe->delete();
             return back()->withInput()->with('success', 'Cadastro excluido!');
-        }catch(Exception $e){
+        } catch (Exception $e) {
             //Redireciona usuario com mensagem de erro
             return redirect()->route('municipe.index')->with('error', 'Cadastro não excluido! Pode ser que exista registros de atendimentos para o munícipe. Exclua os atendimentos e tente novamente.');
         }
-
     }
 }
