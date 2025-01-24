@@ -13,7 +13,7 @@
 
         <div class="card mb-4 border-light shadow">
             <div class="card-header space-between-elements">
-                <span>Registrar atendimento - <b>{{ $municipe->nome }}</b></span>
+                <span>Registrar atendimento - <b>{{ $municipe->nome }} - {{ $municipe->bairro }}</b></span>
             </div>
 
             <div class="card-body">
