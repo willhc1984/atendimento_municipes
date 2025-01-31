@@ -70,7 +70,7 @@
                                 <td>{{ $atendimento->vereador }}</td>
                                 <td>{{ $atendimento->municipe->bairro }}</td>
                                 <td>{{ \Carbon\Carbon::parse($atendimento->dataHora)->tz('America/Sao_Paulo')->format('d/m/Y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($atendimento->dataHora)->tz('America/Sao_Paulo')->format('H:i:s') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($atendimento->dataHora)->tz('America/Sao_Paulo')->format('H:i') }}</td>
                                 <td>{{ $atendimento->status }}</td>
                                 <td class="d-md-flex justify-content-center">
                                     <a href="{{ route('atendimento.edit', ['atendimento' => $atendimento->id]) }}"
