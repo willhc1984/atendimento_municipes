@@ -57,6 +57,7 @@
                         <tr>
                             <th scope="col">#ID</th>
                             <th scope="col">Vereador</th>
+                            <th scope="col">Bairro</th>
                             <th scope="col">Data</th>
                             <th scope="col">Hora</th>
                             <th scope="col">Status</th>
@@ -67,6 +68,7 @@
                             <tr>
                                 <th scope="row">{{ $atendimento->id }}</th>
                                 <td>{{ $atendimento->vereador }}</td>
+                                <td>{{ $atendimento->municipe->bairro }}</td>
                                 <td>{{ \Carbon\Carbon::parse($atendimento->dataHora)->tz('America/Sao_Paulo')->format('d/m/Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($atendimento->dataHora)->tz('America/Sao_Paulo')->format('H:i:s') }}</td>
                                 <td>{{ $atendimento->status }}</td>
