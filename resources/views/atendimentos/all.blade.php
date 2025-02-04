@@ -88,16 +88,16 @@
                                 <td>{{ $atendimento->status }}</td>
                                 <td class="d-md-flex justify-content-center">
                                     <a href="{{ route('atendimento.edit', ['atendimento' => $atendimento->id]) }}"
-                                        class="btn btn-secondary btn-sm me-1 mb-1">
-                                        <i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                        class="btn btn-secondary btn-sm me-1 mb-1" data-bs-toggle="tooltip" title="Editar">
+                                        <i class="fa-solid fa-pen-to-square"></i></a>
 
                                     <form id="formDelete{{ $atendimento->id }}" method="POST"
                                         action="{{ route('atendimento.destroy', ['atendimento' => $atendimento->id]) }}">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm me-1 mb-1 btnDelete"
+                                        <button type="submit" class="btn btn-danger btn-sm me-1 mb-1 btnDelete" data-bs-toggle="tooltip" title="Excluir"
                                             data-delete-id="{{ $atendimento->id }}"><i class="fa-regular fa-trash-can"></i>
-                                            Apagar</button>
+                                            </button>
                                     </form>
                                 </td>
                             </tr>

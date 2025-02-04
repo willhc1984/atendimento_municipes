@@ -64,26 +64,44 @@
                             <tr style="text-align: center;">
                                 <th scope="row">{{ $municipe->id }}</th>
                                 <td>{{ $municipe->nome }}</td>
-                                <td>{{ $municipe->documento }}</td>
-                                <td>{{ $municipe->telefone }}</td>
-                                <td>{{ $municipe->bairro }}</td>
-                                <td class="d-md-flex justify-content-center">
+                                
+                                <td>@if(empty($municipe->documento))
+                                        <span class="badge rounded-pill bg-warning text-dark">Não informado</span>                                    
+                                    @else
+                                        {{ $municipe->documento }}
+                                    @endif
+                                </td>
+                                
+                                <td>@if(empty($municipe->telefone))
+                                        <span class="badge rounded-pill bg-warning text-dark">Não informado</span>                                    
+                                    @else
+                                        {{ $municipe->telefone }}
+                                    @endif
+                                </td>
 
+                                <td>@if(empty($municipe->bairro))
+                                        <span class="badge rounded-pill bg-warning text-dark">Não informado</span> 
+                                    @else
+                                        {{ $municipe->bairro }}
+                                    @endif
+                                </td>
+
+                                <td class="d-md-flex justify-content-center">
                                     <a href="{{ route('atendimento.index', ['municipe' => $municipe->id]) }}" class="btn btn-info btn-sm me-1 mb-1">
                                         <i class="fa-solid fa-list-check"></i> Atendimentos</a>
 
                                     <a href="{{ route('municipe.edit', ['municipe' => $municipe->id]) }}"
-                                        class="btn btn-secondary btn-sm me-1 mb-1">
-                                        <i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                        class="btn btn-secondary btn-sm me-1 mb-1" data-bs-toggle="tooltip" title="Editar">
+                                        <i class="fa-solid fa-pen-to-square"></i></a>
                                     
                                     @can('destroy-municipes')
                                     <form id="formDelete{{ $municipe->id }}" method="POST"
                                         action="{{ route('municipe.destroy', ['municipe' => $municipe->id]) }}">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm me-1 mb-1 btnDelete"
+                                        <button type="submit" class="btn btn-danger btn-sm me-1 mb-1 btnDelete" data-bs-toggle="tooltip" title="Excluir"
                                             data-delete-id="{{ $municipe->id }}"><i class="fa-regular fa-trash-can"></i>
-                                            Apagar</button>
+                                            </button>
                                     </form>
                                     @endcan
                                 </td>
