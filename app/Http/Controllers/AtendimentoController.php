@@ -24,24 +24,46 @@ class AtendimentoController extends Controller
         //Busca vereadores
         $vereadores = Vereador::orderBy('nome')->get();
 
-        //Busca atendimentos no banco de dados conforme parametros do form de pesquisa
-         $atendimentos = Atendimento::when($request->has('vereador'), function ($whenQuery) use ($request) {
-            $whenQuery->where('vereador', 'like', '%' . $request->vereador . '%');
-        })
-            ->when($request->filled('data_inicial'), function ($whenQuery) use ($request) {
-                $whenQuery->where('dataHora', '>=', \Carbon\Carbon::parse($request->data_inicial)->format('Y-m-d'));
-            })
-            ->when($request->filled('data_final'), function ($whenQuery) use ($request) {
-                $whenQuery->where('dataHora', '<=', \Carbon\Carbon::parse($request->data_final)->format('Y-m-d'));
-            })
+        //Query base
+        $atendimentos = Atendimento::query();
 
-            ->orderByDesc('dataHora')
-            ->paginate(30)
-            ->withQueryString();
+        //Se usuario escolheu as datas
+        if($request->filled('data_inicial') && $request->filled('data_final')){
+            $data_inicial = $request->data_inicial . ' 00:00:00';
+            $data_final = $request->data_final . ' 23:59:59';
+
+            //Se data inicial == data final. garantir o intervalo do dia todo
+            if($request->data_inicial == $request->data_final){
+                $atendimentos->whereDate('dataHora', $request->data_inicial);
+            }else{
+                $atendimentos->whereBetween('dataHora', [$data_inicial, $data_final]);
+            }
+        }
+
+        //Apenas data de inicio
+        elseif ($request->filled('data_inicial')) {
+            $data_inicial = $request->data_inicial . ' 00:00:00';
+            $atendimentos->where('dataHora', '>=', $data_inicial);
+        }
+
+        //Apenas data de fim
+        elseif($request->filled('data_final')){
+            $data_final = $request->data_final . ' 23:59:59';
+            $atendimentos->where('dataHora', '<=', $data_final);
+        }
+
+        // Se o usuário filtrou por nome
+        $atendimentos->when($request->filled('vereador'), function ($q) use ($request) {
+            $q->where('vereador', $request->vereador);
+        });
+
+        //Definir quantidade de registros por pagina
+        $registros = $atendimentos->paginate(20);
+
 
         //Carrega a view
         return view('atendimentos.all', [
-            'atendimentos' => $atendimentos,
+            'atendimentos' => $registros,
             'vereadores' => $vereadores
         ]);
     }

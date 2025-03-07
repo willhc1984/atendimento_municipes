@@ -109,7 +109,7 @@
                     </tbody>
                 </table>
 
-                {{ $atendimentos->onEachSide(2)->links() }}
+                {{ $atendimentos->appends(request()->query())->onEachSide(2)->links() }}
 
             </div>
         </div>

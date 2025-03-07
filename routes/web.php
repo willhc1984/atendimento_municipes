@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\EstatisticasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MunicipeController;
 use App\Http\Controllers\ProfileController;
@@ -77,4 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/edit-profile-password', [ProfileController::class, 'editPassword'])->name('profile.edit-password');
     Route::put('/update-profile-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
+    //Estatisticas
+    Route::get('/estatisticas', [EstatisticasController::class, 'index'])->name('estatisticas.index');
+
 });
