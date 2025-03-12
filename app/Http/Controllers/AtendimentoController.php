@@ -14,7 +14,8 @@ class AtendimentoController extends Controller
 {
 
     //Abre tela inicial
-    public function home() {
+    public function home()
+    {
         return view('atendimentos.home');
     }
 
@@ -28,14 +29,14 @@ class AtendimentoController extends Controller
         $atendimentos = Atendimento::query();
 
         //Se usuario escolheu as datas
-        if($request->filled('data_inicial') && $request->filled('data_final')){
+        if ($request->filled('data_inicial') && $request->filled('data_final')) {
             $data_inicial = $request->data_inicial . ' 00:00:00';
             $data_final = $request->data_final . ' 23:59:59';
 
             //Se data inicial == data final. garantir o intervalo do dia todo
-            if($request->data_inicial == $request->data_final){
+            if ($request->data_inicial == $request->data_final) {
                 $atendimentos->whereDate('dataHora', $request->data_inicial);
-            }else{
+            } else {
                 $atendimentos->whereBetween('dataHora', [$data_inicial, $data_final]);
             }
         }
@@ -47,7 +48,7 @@ class AtendimentoController extends Controller
         }
 
         //Apenas data de fim
-        elseif($request->filled('data_final')){
+        elseif ($request->filled('data_final')) {
             $data_final = $request->data_final . ' 23:59:59';
             $atendimentos->where('dataHora', '<=', $data_final);
         }
@@ -57,9 +58,13 @@ class AtendimentoController extends Controller
             $q->where('vereador', $request->vereador);
         });
 
-        //Definir quantidade de registros por pagina
-        $registros = $atendimentos->paginate(20);
+        //Se usuario filtrou por Status
+        $atendimentos->when($request->filled('status'), function ($q) use ($request) {
+            $q->where('status', $request->status);
+        });
 
+        //Definir quantidade de registros por pagina e ordenar
+        $registros = $atendimentos->paginate(20);
 
         //Carrega a view
         return view('atendimentos.all', [
@@ -72,13 +77,13 @@ class AtendimentoController extends Controller
     public function index(Request $request, Municipe $municipe)
     {
         //Busca atendimentos do municipe no banco de dados conforme parametros do form de pesquisa
-        $atendimentos = Atendimento::when($request->has('data'), function($whenQuery) use ($request){
+        $atendimentos = Atendimento::when($request->has('data'), function ($whenQuery) use ($request) {
             $whenQuery->whereDate('dataHora', '=', $request->data);
         })
-        ->where('municipe_id', $municipe->id)
-        ->orderByDesc('dataHora')
-        ->paginate(15)
-        ->withQueryString();
+            ->where('municipe_id', $municipe->id)
+            ->orderByDesc('dataHora')
+            ->paginate(15)
+            ->withQueryString();
 
         // $atendimentos = Atendimento::with('municipe')
         //     ->where('municipe_id', $municipe->id)
@@ -163,24 +168,24 @@ class AtendimentoController extends Controller
             DB::commit();
             //Redireciona com msg de sucesso
             return redirect()->route('atendimento.all')->with('success', 'Atendimento atualizado!');
-
         } catch (Exception $e) {
             //Transação não concluida
-            DB::rollBack();            
+            DB::rollBack();
             //Redireciona usuario, envia mensagem de erro
             return redirect()->back()->with('error', 'Atendimento não atualizado! Tente novamente.' . $e->getMessage());
         }
     }
 
     //Excluir atendimento 
-    public function destroy(Atendimento $atendimento){
-        try{
+    public function destroy(Atendimento $atendimento)
+    {
+        try {
             //Exclui do banco de dados
             $atendimento->delete();
             //Redireciona com msg de sucesso
             return redirect()->route('atendimento.all')
                 ->with('success', 'Atendimento excluido!');
-        }catch(Exception $e){   
+        } catch (Exception $e) {
             //Redireciona usuario com msg de erro
             return redirect()->back()->with('error', 'Atendimento não excluído! Tente novamente.');
         }

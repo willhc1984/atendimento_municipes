@@ -39,6 +39,16 @@
                                 @endforelse
                             </select>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-select" name="status">
+                                <option selected></option>
+                                <option value="Atendido">Atendido</option>
+                                <option value="Aguardando">Aguardando</option>
+                                <option value="Desistencia">Desistencia</option>
+                                <option value="Troca">Troca</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12 mt-2 pt-2">
