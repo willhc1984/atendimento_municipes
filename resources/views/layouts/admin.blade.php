@@ -69,10 +69,12 @@
                             Vereadores
                         </a>
 
+                        <!--
                         <a class="nav-link" href="{{ route('estatisticas.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-pie"></i></div>
                             Estatísticas
                         </a>
+                        -->
 
                         <a class="nav-link" href="{{ route('user.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user-gear"></i></i></div>
