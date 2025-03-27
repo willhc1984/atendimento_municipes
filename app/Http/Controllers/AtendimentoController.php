@@ -63,8 +63,11 @@ class AtendimentoController extends Controller
             $q->where('status', $request->status);
         });
 
+        //Obtem opção de ordenação do usuário
+        $ordenacao = $request->input('ordenacao', 'desc');
+
         //Definir quantidade de registros por pagina e ordenar
-        $registros = $atendimentos->orderByDesc('dataHora')->paginate(20);
+        $registros = $atendimentos->orderBy('dataHora', $ordenacao)->paginate(20);
 
         //Carrega a view
         return view('atendimentos.all', [

@@ -29,7 +29,7 @@
                             <label class="form-label" for="data_final">Data final:</label>
                             <input type="date" name="data_final" id="data_final" class="form-control" value="" />
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <label for="vereador" class="form-label">Vereador</label>
                             <select class="form-select" name="vereador">
                                 <option selected></option>
@@ -39,7 +39,7 @@
                                 @endforelse
                             </select>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <label for="status" class="form-label">Status</label>
                             <select class="form-select" name="status">
                                 <option selected></option>
@@ -47,6 +47,13 @@
                                 <option value="Aguardando">Aguardando</option>
                                 <option value="Desistencia">Desistencia</option>
                                 <option value="Troca">Troca</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <label for="ordenacao" class="form-label">Ordenar por:</label>
+                            <select class="form-select" name="ordenacao" id="ordenacao" onchange="this.form.submit()">
+                                <option value="desc" {{ request('ordenacao') == 'desc' ? 'selected' : '' }}>Mais recentes primeiro</option>
+                                <option value="asc" {{ request('ordenacao') == 'asc' ? 'selected' : '' }}>Mais antigos primeiro</option>
                             </select>
                         </div>
                     </div>
