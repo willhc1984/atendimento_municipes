@@ -64,7 +64,7 @@ class AtendimentoController extends Controller
         });
 
         //Definir quantidade de registros por pagina e ordenar
-        $registros = $atendimentos->paginate(20);
+        $registros = $atendimentos->orderByDesc('dataHora')->paginate(20);
 
         //Carrega a view
         return view('atendimentos.all', [
