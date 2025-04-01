@@ -54,7 +54,7 @@
                             <option value="Atendido">Atendido</option>
                             <option value="Aguardando">Aguardando</option>
                             <option value="Desistencia">Desistencia</option>
-                            <option value="Atendido">Troca</option>
+                            <option value="Troca">Troca</option>
                         </select>
                     </div>
                     <div class="col-12">
