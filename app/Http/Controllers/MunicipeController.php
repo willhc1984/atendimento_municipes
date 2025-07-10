@@ -106,13 +106,22 @@ class MunicipeController extends Controller
     //Excluir municipe
     public function destroy(Municipe $municipe)
     {
+        //IP e nome da computador para auditoria
+        $ipCliente = request()->ip();
+        $nomeComputador = gethostbyaddr($ipCliente);
+
         //Exclui registro
         try {
+            //Seta variabeis de sessão no MySQL
+            DB::statement("SET @ip_cliente = ?", [$ipCliente]);
+            DB::statement("SET @nome_computador = ?", [$nomeComputador]);
+
+            //Executa delete (trigger irá capturar)
             $municipe->delete();
             return back()->withInput()->with('success', 'Cadastro excluido!');
         } catch (Exception $e) {
             //Redireciona usuario com mensagem de erro
-            return redirect()->route('municipe.index')->with('error', 'Cadastro não excluido! Pode ser que exista registros de atendimentos para o munícipe. Exclua os atendimentos e tente novamente.');
+            return redirect()->route('municipe.index')->with('error', 'Cadastro não excluido! Pode ser que exista registros de atendimentos para o munícipe. Exclua os atendimentos e tente novamente.' . $e->getMessage());
         }
     }
 }
