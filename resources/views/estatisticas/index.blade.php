@@ -17,7 +17,7 @@
                 <span>Pesquisar</span>
             </div>
             <div class="card-body">
-                <form action="{{ route('estatisticas.index') }}">
+                <form action="{{ route('estatisticas.index') }}" method="GET">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <label class="form-label" for="data_inicial">Data inicial:</label>
@@ -26,16 +26,6 @@
                         <div class="col-md-6 col-sm-12">
                             <label class="form-label" for="data_final">Data final:</label>
                             <input type="date" name="data_final" id="data_final" class="form-control" value="" />
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <label for="vereador" class="form-label">Vereador</label>
-                            <select class="form-select" name="vereador">
-                                <option selected></option>
-                                @forelse($vereadores as $vereador)
-                                    <option value="{{ $vereador->nome }}">{{ $vereador->nome }}</option>
-                                @empty
-                                @endforelse
-                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -47,12 +37,52 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>                
         </div>
 
-        @if(isset($total))
-            <p>Total de atendimentos:  {{ $total }} </p>
-        @endif
+        <div class="card mb-4 border-light shadow">
+            @if(isset($atendimentos) && $atendimentos)
+            <div class="card-header space-between-elements">
+                <span>Período de <b> {{ \Carbon\Carbon::parse($dataInicial)->tz('America/Sao_Paulo')->format('d/m/Y') }} 
+                                a {{ \Carbon\Carbon::parse($dataFinal)->tz('America/Sao_Paulo')->format('d/m/Y') }} </b></span>
+            </div>
+            
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th>Vereador</th>
+                            <th>Total de Atendimentos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($atendimentos as $atendimento)
+                            <tr style="text-align: center;">
+                                <td>{{ $atendimento->vereador }}</td>
+                                <td>{{ $atendimento->total }}</td>
+                            </tr>
+                        @empty
+                            <tr style="text-align: center;">
+                                <td colspan="2" class="text-center">Nenhum atendimento encontrado para o período.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+
+                <div class="alert alert-success" role="alert">
+                    <p class="lead">Foram registrados <b>**{{ $totalPeriodo }}**</b> atendimentos no período de <b> {{ \Carbon\Carbon::parse($dataInicial)->tz('America/Sao_Paulo')->format('d/m/Y') }} 
+                                a {{ \Carbon\Carbon::parse($dataFinal)->tz('America/Sao_Paulo')->format('d/m/Y') }}</p>
+                </div>
+            </div>
+            @elseif(isset($totalGeral))
+                <div class="card-body">
+                    <div class="alert alert-success" role="alert">
+                        <p class="lead">Desde janeiro de 2025, foram registrados <b>**{{ $totalGeral }}**</b> atendimentos no total.</p>
+                    </div>
+                </div>
+            @endif
+            
+        </div>
 
     </div>
 @endsection
