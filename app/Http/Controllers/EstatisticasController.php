@@ -15,11 +15,13 @@ class EstatisticasController extends Controller
 
         //Verifica se data inicial e final foram fornecidas
         $request->validate([
-            'data_inicial' => 'required_with:data_final',
-            'data_final' => 'required_with:data_inicial'
+            'data_inicial' => ['required_with:data_final', 'before_or_equal:data_final'],
+            'data_final' => ['required_with:data_inicial', 'before_or_equal:today'],
         ], [
             'data_inicial.required_with' => 'Forneça data inicial e final!',
-            'data_final.required_with' => 'Forneça data inicial e final!'
+            'data_final.required_with' => 'Forneça data inicial e final!',
+            'data_inicial.before_or_equal' => 'A data inicial não pode ser maior que a data final!',
+            'data_final.before_or_equal' => 'A data final não pode ser uma data futura!'
         ]);
 
         //Recupera o intervalo de datas
