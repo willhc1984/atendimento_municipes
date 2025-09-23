@@ -78,6 +78,7 @@
                 <div class="card-body">
                     <div class="alert alert-success" role="alert">
                         <p class="lead">Desde janeiro de 2025, foram registrados <b>**{{ $totalGeral }}**</b> atendimentos no total.</p>
+                        <p class="lead">Ocorreram <b>**{{ $desistencia }}**</b> desistências.</p>
                     </div>
                 </div>
             @endif
