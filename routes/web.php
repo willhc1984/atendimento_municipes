@@ -81,5 +81,4 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Estatisticas
     Route::get('/estatisticas', [EstatisticasController::class, 'index'])->name('estatisticas.index');
-
 });

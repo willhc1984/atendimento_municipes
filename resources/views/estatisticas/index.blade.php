@@ -21,11 +21,11 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <label class="form-label" for="data_inicial">Data inicial:</label>
-                            <input type="date" name="data_inicial" id="data_inicial" class="form-control" value="" />
+                            <input type="date" name="data_inicial" id="data_inicial" class="form-control" value="{{ old('data_inicial') }}" />
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label class="form-label" for="data_final">Data final:</label>
-                            <input type="date" name="data_final" id="data_final" class="form-control" value="" />
+                            <input type="date" name="data_final" id="data_final" class="form-control" value="{{ old('data_final') }}" />
                         </div>
                     </div>
                     <div class="row">
@@ -72,6 +72,7 @@
                 <div class="alert alert-success" role="alert">
                     <p class="lead">Foram registrados <b>**{{ $totalPeriodo }}**</b> atendimentos no período de <b> {{ \Carbon\Carbon::parse($dataInicial)->tz('America/Sao_Paulo')->format('d/m/Y') }} 
                                 a {{ \Carbon\Carbon::parse($dataFinal)->tz('America/Sao_Paulo')->format('d/m/Y') }}</p>
+                    <p class="lead">Ocorreram <b>**{{ $desistenciasNoPeriodo }}**</b> desistências nesse período.</p>
                 </div>
             </div>
             @elseif(isset($totalGeral))
