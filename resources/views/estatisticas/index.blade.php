@@ -32,7 +32,7 @@
                         <div class="col-md-4 col-sm-12 mt-2 pt-2">
                             <button type="submit" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass">
                                 </i> Pesquisar</button>
-                            <a href="#" class="btn btn-warning btn-sm"><i
+                            <a href="/estatisticas" class="btn btn-warning btn-sm" onclick="limparDatas()"><i
                                     class="fa-solid fa-trash"></i>Limpar</a>
                         </div>
                     </div>
@@ -87,4 +87,14 @@
         </div>
 
     </div>
+
+    <script>
+        function limparDatas() {
+            document.getElementById('data_inicial').value = '';
+            document.getElementById('data_final').value = '';
+            document.querySelector('form').submit();
+        }
+    </script>
+
+
 @endsection

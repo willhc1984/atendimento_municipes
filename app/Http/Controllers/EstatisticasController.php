@@ -15,6 +15,9 @@ class EstatisticasController extends Controller
     //Carrega a view de estatisticas
     public function index(EstatisticasRequest $request)
     {
+
+        //dd($request);
+
         //Se as datas não forem fornecidas, retorna total geral e finaliza
         if (empty($request->input('data_inicial')) && empty($request->input('data_final'))) {
             $totalGeral = Atendimento::where('status', 'like', 'Atendido')->count();
@@ -26,8 +29,6 @@ class EstatisticasController extends Controller
                 'desistencia' => $desistencia
             ]);
         }
-
-        // dd(empty($request->input('data_inicial')) && empty($request->input('data_final')));
 
         //A validação é executada se pelo menos uma data for preenchida.
         $request->validated();
@@ -44,7 +45,9 @@ class EstatisticasController extends Controller
         $desistenciasNoPeriodo = Atendimento::whereBetween('dataHora', [$dataInicial, $dataFinal])
             ->where('status', 'like', 'Desistencia')->count();
 
-        $atendimentosPorVereador = $atendimentosNoPerido->select('vereador', DB::raw('count(*) as total'))
+        $atendimentosPorVereador = Atendimento::where('status', 'Atendido')
+            ->whereBetween('dataHora', [$dataInicial, $dataFinal])
+            ->select('vereador', DB::raw('count(*) as total'))
             ->groupBy('vereador')
             ->orderByRaw('count(*) desc')
             ->get();
