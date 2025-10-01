@@ -15,8 +15,7 @@ class EstatisticasController extends Controller
     //Carrega a view de estatisticas
     public function index(EstatisticasRequest $request)
     {
-
-        //dd($request);
+        //dd(empty($request->input('data_inicial')) && empty($request->input('data_final')));
 
         //Se as datas não forem fornecidas, retorna total geral e finaliza
         if (empty($request->input('data_inicial')) && empty($request->input('data_final'))) {

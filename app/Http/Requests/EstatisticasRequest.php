@@ -37,10 +37,10 @@ class EstatisticasRequest extends FormRequest
     public function messages()
     {
         return [
+            'data_inicial.before_or_equal' => 'Selecione data inicial e final. A data inicial não pode ser maior que a data final.',
+            'data_final.before_or_equal' => 'Selecione data inicial e final. A data final não pode ser uma data futura.',
             'data_inicial.required' => 'Selecione data inicial e final.',
             'data_final.required' => 'Selecione a data inicial e final.',
-            'data_inicial.before_or_equal' => 'A data inicial não pode ser maior que a data final.',
-            'data_final.before_or_equal' => 'A data final não pode ser uma data futura.',
         ];
     }
 }
